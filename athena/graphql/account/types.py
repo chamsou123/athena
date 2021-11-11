@@ -1,9 +1,10 @@
 from django.contrib.auth import get_user_model
 from graphene import relay
-from graphene_django import DjangoObjectType
+
+from athena.graphql.core.connection import CountableDjangoObjectType
 
 
-class UserType(DjangoObjectType):
+class UserType(CountableDjangoObjectType):
     class Meta:
         description = "Represents user data."
         interfaces = [relay.Node]

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'graphene_django',
     'athena.core',
     'athena.account',
+    'athena.graphql'
 ]
 
 MIDDLEWARE = [

@@ -1,9 +1,11 @@
+from enum import Enum
 from functools import wraps
 
 from django.core.exceptions import PermissionDenied
 from graphql import ResolveInfo
 
 from athena.core.permissions import has_one_of_permissions
+from athena.core.permissions import permission_required as core_permission_required
 from athena.graphql.core.utils.utils import get_user_from_context
 
 
@@ -30,6 +32,19 @@ def account_passes_test(test_func):
         return wrapper
 
     return decorator
+
+
+def permission_required(perm):
+    def check_perms(context):
+        if isinstance(perm, Enum):
+            perms = (perm,)
+        else:
+            perms = perm
+
+        requestor = get_user_from_context(context)
+        return core_permission_required(perms, requestor)
+
+    return account_passes_test(check_perms)
 
 
 def one_of_permissions_required(perms):

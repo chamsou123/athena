@@ -1,5 +1,6 @@
 from enum import Enum
 
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import permission_required
 
 
@@ -17,6 +18,18 @@ class AccountPermissions(BasePermissionEnum):
 
 def split_permission_codename(permissions):
     return [permission.split(".")[1] for permission in permissions]
+
+
+def permission_required(perms, requestor):
+    User = get_user_model()
+    if isinstance(requestor, User):
+        if requestor.has_perms(perms):
+            return True
+    else:
+        if AccountPermissions.MANAGE_STAFF in perms:
+            return False
+        return requestor.has_perms(perms)
+    return False
 
 
 def has_one_of_permissions(requestor, permissions=None):

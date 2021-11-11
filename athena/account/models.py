@@ -24,6 +24,9 @@ class UserManager(BaseUserManager):
             email, password, is_staff=True, is_superuser=True, **extra_fields
         )
 
+    def staff(self):
+        return self.get_queryset().filter(is_staff=True)
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
@@ -31,6 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=256, blank=True)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
