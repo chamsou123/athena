@@ -8,3 +8,9 @@ class EnumFilter(django_filters.CharFilter):
         ), "Providing exact filter method is required for EnumFilter"
         self.input_class = input_class
         super().__init__(*args, **kwargs)
+
+
+class ObjectTypeFilter(django_filters.Filter):
+    def __init__(self, input_class, *args, **kwargs):
+        self.input_class = input_class
+        super().__init__(*args, **kwargs)

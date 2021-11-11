@@ -1,6 +1,6 @@
 import graphene
 
-from athena.graphql.core.types.sort_inputs import SortInputObjectType
+from athena.graphql.core.types.sort_input import SortInputObjectType
 
 
 class UserSortField(graphene.Enum):

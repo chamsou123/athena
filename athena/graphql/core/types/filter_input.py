@@ -2,7 +2,8 @@ from graphene import InputField
 from graphene.types.inputobjecttype import InputObjectTypeOptions, InputObjectType
 from graphene.types.utils import yank_fields_from_attrs
 from graphene_django.filter.utils import get_filterset_class
-from graphene_django.forms.converter import convert_form_field
+
+from .converter import convert_form_field
 
 
 class FilterInputObjectType(InputObjectType):
