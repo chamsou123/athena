@@ -4,7 +4,7 @@ atomicwrites==1.4.0
 attrs==21.2.0
 colorama==0.4.4
 coverage==6.0.2
-Django==3.2.8
+Django==3.2.12
 django-filter==21.1
 graphene==2.1.9
 graphene-django==2.15.0
