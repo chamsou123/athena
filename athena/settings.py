@@ -8,7 +8,10 @@ from django.core.management.utils import get_random_secret_key
 
 
 def get_list(text):
-    return [item.strip() for item in text.split(",")]
+    if text:
+        return [item.strip() for item in text.split(",")]
+    else:
+        raise TypeError("Argument text was not provided.")
 
 
 def get_bool_from_env(name, default_value):
@@ -79,11 +82,15 @@ TEMPLATES = [
     },
 ]
 
+LOCAL_DATABASE = os.environ.get("LOCAL_DATABASE")
+
 DATABASE = os.environ.get("DATABASE")
 
 if not DATABASE:
     if DEBUG:
-        DATABASE = get_list("localhost,5432,athena,postgres,agouni123")
+        if not LOCAL_DATABASE:
+            raise ImproperlyConfigured("DEBUG=True, please setup a LOCAL_DATABASE in setting.py")
+        DATABASE = get_list(LOCAL_DATABASE)
     else:
         raise ImproperlyConfigured("DATABASE must be set when debug=False")
 
