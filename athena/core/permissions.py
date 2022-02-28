@@ -17,7 +17,10 @@ class AccountPermissions(BasePermissionEnum):
 
 
 def split_permission_codename(permissions):
-    return [permission.split(".")[1] for permission in permissions]
+    if permissions:
+        return [permission.split(".") for permission in permissions]
+    else:
+        raise TypeError("Argument permissions was not provided")
 
 
 def permission_required(perms, requestor):
