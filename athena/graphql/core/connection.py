@@ -1,5 +1,4 @@
 import json
-from collections import Iterable
 from decimal import Decimal, InvalidOperation
 
 import graphene

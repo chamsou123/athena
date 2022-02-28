@@ -32,7 +32,7 @@ class AccountQueries(graphene.ObjectType):
         UserType,
         filter=StaffUserInput(description="Filtering options for staff users."),
         sort_by=UserSortingInput(description="Sort staff users."),
-        description="List of the shop's staff users.",
+        description="List of athena staff users.",
     )
 
     @one_of_permissions_required([AccountPermissions.MANAGE_STAFF, AccountPermissions.MANAGE_USERS])

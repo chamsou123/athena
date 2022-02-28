@@ -20,6 +20,8 @@ media
 .idea/**/libraries
 *.iws /out/
 
+*.DS_Store
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
