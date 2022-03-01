@@ -93,6 +93,8 @@ if not DATABASE:
         DATABASE = get_list(LOCAL_DATABASE)
     else:
         raise ImproperlyConfigured("DATABASE must be set when debug=False")
+else:
+    DATABASE = get_list(DATABASE)
 
 DATABASES = {
     'default': {
